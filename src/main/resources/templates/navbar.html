@@ -37,20 +37,8 @@
     </div>
 </nav>
 
-<h1>Login</h1>
-<div th:if="${param.error}">Invalid username or password</div>
-<form th:action="@{/login}" method="post">
-    <div>
-        <label>Username: <input type="text" name="username" /></label>
-    </div>
-    <div>
-        <label>Password: <input type="password" name="password" /></label>
-    </div>
-    <div>
-        <input type="submit" value="Sign in">
-    </div>
-</form>
-
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
