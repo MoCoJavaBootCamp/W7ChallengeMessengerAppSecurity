@@ -51,7 +51,7 @@
                 <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}">Message Error</span>
             </strong></mark>
             <br />
-            User: <span sec:authentication="name"></span>
+<!--            User: <span sec:authentication="name" th:field="*{user}"></span>-->
             <br />
             <input type="submit" value="Submit"/>
         </form>

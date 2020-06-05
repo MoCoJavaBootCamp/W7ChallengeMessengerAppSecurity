@@ -26,14 +26,18 @@ public class HomeCtrl {
     MessageRepository messageRepository;
 
     @RequestMapping("/newmessage")
-    public String newWoof(Model model) {
+    public String newWoof(Principal principal, Model model) {
+        String username = principal.getName();
+        model.addAttribute("user", userRepository.findByUsername(username));
         model.addAttribute("message", new Message());
         model.addAttribute("allusers", userRepository.findAll());
         return "newmessage";
     }
 
     @RequestMapping("/processmessage")
-    public String processMessage(@ModelAttribute("message") Message message, User user) {
+    public String processMessage(Principal principal, @ModelAttribute("message") Message message, User user) {
+        String username = principal.getName();
+
         message.setUser(user);
         userRepository.save(user);
         messageRepository.save(message);

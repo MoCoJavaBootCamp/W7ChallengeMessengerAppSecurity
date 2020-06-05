@@ -25,18 +25,13 @@
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/newmessage"
-                   th:action="@{/newmessage}">New Woof</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Register</a>
+                <a class="nav-link" href="#">New Woof</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Sign In</a>
             </li>
-            <li class="nav-item" sec:authorize="isAuthenticated()">
-                <a class="nav-link" href="/logout"
-                   th:action="@{/logout}" method="post">Log Out</a>
+            <li class="nav-item">
+                <form th:action="@{/logout}" method="post"><a class="nav-link" href="/logout">Log Out</a></form>
             </li>
         </ul>
     </div>
