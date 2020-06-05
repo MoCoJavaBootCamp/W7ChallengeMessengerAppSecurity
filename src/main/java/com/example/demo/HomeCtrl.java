@@ -22,6 +22,9 @@ public class HomeCtrl {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    MessageRepository messageRepository;
+
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
         String username = principal.getName();
@@ -55,7 +58,10 @@ public class HomeCtrl {
     }
 
     @RequestMapping("/")
-    public String index() { return "index"; }
+    public String index(Model model) {
+        model.addAttribute("allmessages", messageRepository.findAll());
+        return "index";
+    }
 
     @RequestMapping("/login")
     public String login() {
