@@ -25,6 +25,21 @@ public class HomeCtrl {
     @Autowired
     MessageRepository messageRepository;
 
+    @RequestMapping("/newmessage")
+    public String newWoof(Model model) {
+        model.addAttribute("message", new Message());
+        model.addAttribute("allusers", userRepository.findAll());
+        return "newmessage";
+    }
+
+    @RequestMapping("/processmessage")
+    public String processMessage(@ModelAttribute("message") Message message, User user) {
+        message.setUser(user);
+        userRepository.save(user);
+        messageRepository.save(message);
+        return "redirect:/";
+    }
+
     @RequestMapping("/secure")
     public String secure(Principal principal, Model model) {
         String username = principal.getName();

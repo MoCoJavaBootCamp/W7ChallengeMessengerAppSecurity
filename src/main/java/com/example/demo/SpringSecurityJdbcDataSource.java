@@ -36,11 +36,11 @@ public class SpringSecurityJdbcDataSource {
             userRepository.save(user);
             roleRepository.save(userRole);
 
-            User admin = new User("super", "super@domain.com",
-                    "super", "Super", "Man", true);
-            Role adminRole = new Role("super", "ROLE_ADMIN");
+            User admin = new User("admin", "admin@domain.com",
+                    "admin", "Admin", "Istrator", true);
+            Role adminRole = new Role("admin", "ROLE_ADMIN");
             Message message3 = new Message();
-            message3.setMessage("My name is SUPER and I approve this message");
+            message3.setMessage("My name is ADMIN and I approve this message");
             message3.setUser(admin);
             Set<Message> messageSet2 = new HashSet<>();
             messageSet2.add(message3);

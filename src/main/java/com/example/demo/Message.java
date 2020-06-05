@@ -48,7 +48,11 @@ public class Message {
         this.message = message;
     }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
+    public LocalDateTime getCreatedAt() {
+//        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        return dateFormat.format(createdAt);
+        return createdAt;
+    }
 
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 

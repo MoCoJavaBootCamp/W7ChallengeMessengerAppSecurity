@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Woofer</title>
+    <title>New Woof</title>
 </head>
 <body>
 
@@ -22,14 +22,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/index"
+                    th:action="@{/index}">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/newmessage"
-                   th:action="@{/newmessage}">New Woof</a>
+                   th:action="@{/newmessage}">New Woof<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Sign In</a>
+                <a class="nav-link" href="/login"
+                    th:action="@{/login}">Sign In</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/logout"
@@ -40,12 +42,21 @@
 </nav>
 
 <div>
-    <!-- MESSAGES -->
-    <div th:each="message : ${allmessages}">
-        <h6 th:text="${message.user.username}"></h6>
-        <h6 th:text="${message.createdAt}"></h6>
-        <h5 th:text="${message.message}"></h5>
+    <!-- NEW WOOF FORM -->
+    <div>
+        <form action="#" th:action="@{/processmessage}" th:object="${message}" method="post">
+            Message:
+            <input type="text" id="message" placeholder="Woof woof!" th:field="*{message}"/>
+            <mark><strong>
+                <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}">Message Error</span>
+            </strong></mark>
+            <br />
+            User: <span sec:authentication="name"></span>
+            <br />
+            <input type="submit" value="Submit"/>
+        </form>
     </div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
