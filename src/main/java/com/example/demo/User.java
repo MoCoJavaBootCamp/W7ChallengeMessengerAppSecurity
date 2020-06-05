@@ -3,9 +3,11 @@ package com.example.demo;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name="users_db")
+@Table(name="users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,11 +31,20 @@ public class User {
     @Column(name="enabled")
     private boolean enabled;
 
-    public User(){}
+    @OneToMany(mappedBy = "user",
+                cascade = CascadeType.REMOVE,
+                fetch = FetchType.EAGER)
+    private Set<Message> messages;
 
-    public User(String username, String email, String password, String firstName, String lastName, boolean enabled) {
+    public User(){
+        this.messages = null;
+    }
+
+    public User(String username, String email, String password,
+                String firstName, String lastName, boolean enabled) {
         this.username = username;
         this.email = email;
+        this.messages = null;
         this.setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
@@ -88,6 +99,10 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public Set<Message> getMessages() { return messages; }
+
+    public void setMessages(Set<Message> messages) { this.messages = messages; }
 
     public boolean isEnabled() {
         return enabled;
